@@ -2,7 +2,9 @@ from sklearn.svm import SVC
 
 
 def classify_iris(data, target, classifier="SVM"):
-    """Docstring."""
+    """
+
+    Docstring."""
     if classifier == "SVM":
         clf = SVC()
         clf.fit(data, target)
