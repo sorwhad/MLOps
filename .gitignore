@@ -1,4 +1,6 @@
 dist/
+iris_venv_1
+
 notebook.ipynb
 # Byte-compiled / optimized / DLL files
 __pycache__/
