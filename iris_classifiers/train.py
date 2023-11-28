@@ -1,3 +1,4 @@
+import os
 from os import path
 
 import joblib
@@ -19,6 +20,9 @@ def main():
     )
     model = SVC()
     model.fit(X_train, y_train)
+    if not os.path.exists(MODEL_PATH):
+        os.makedirs(MODEL_PATH)
+
     joblib.dump(model, path.join(MODEL_PATH, "model.pkl"))
 
 
