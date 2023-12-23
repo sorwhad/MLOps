@@ -7,7 +7,7 @@ from sklearn.svm import SVC
 from iris_classifiers.utils import add_dvc, save_to_onnx
 
 DATA_PATH = "../data"
-MODEL_PATH = "../model"
+MODEL_PATH = "../model_repository/sklearn-onnx/1"
 REPO_PATH = "../"
 
 
