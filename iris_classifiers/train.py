@@ -1,9 +1,9 @@
-import os
 from os import path
 
-import joblib
 import pandas as pd
 from sklearn.svm import SVC
+
+from iris_classifiers.utils import save_to_onnx
 
 DATA_PATH = "../data"
 MODEL_PATH = "../model"
@@ -20,10 +20,8 @@ def main():
     )
     model = SVC()
     model.fit(X_train, y_train)
-    if not os.path.exists(MODEL_PATH):
-        os.makedirs(MODEL_PATH)
 
-    joblib.dump(model, path.join(MODEL_PATH, "model.pkl"))
+    save_to_onnx(model, X_train[:1], MODEL_PATH, "model")
 
 
 if __name__ == "__main__":
