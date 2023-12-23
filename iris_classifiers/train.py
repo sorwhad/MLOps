@@ -1,10 +1,10 @@
-from os import path, system
+from os import path
 
 import pandas as pd
 from dvc.repo import Repo
 from sklearn.svm import SVC
 
-from iris_classifiers.utils import save_to_onnx
+from iris_classifiers.utils import add_dvc, save_to_onnx
 
 DATA_PATH = "../data"
 MODEL_PATH = "../model"
@@ -27,13 +27,8 @@ def main():
     model.fit(X_train, y_train)
 
     model_name = "model.onnx"
-
-    print("Adding model to dvc...")
     save_to_onnx(model, X_train[:1], MODEL_PATH, model_name)
-    system(f"dvc add {path.join(MODEL_PATH, model_name)}")
-    system(f"git add {path.join(MODEL_PATH, model_name + '.dvc')}")
-    system(f"git add {path.join(MODEL_PATH, '.gitignore')}")
-    print("Done!")
+    add_dvc(MODEL_PATH, model_name)
 
 
 if __name__ == "__main__":
