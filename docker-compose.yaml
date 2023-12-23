@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  triton_hf_transformer_example:
+  sklearn-onnx:
     command: ["--model-repository=/models", "--log-info=1"]
     build: .
     shm_size: '64gb'

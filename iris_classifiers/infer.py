@@ -21,8 +21,15 @@ def main():
     input_name = sess.get_inputs()[0].name
     label_name = sess.get_outputs()[0].name
 
+    # print("input_name:", input_name)
+    # print("label_name:", label_name)
+
     X_test = pd.read_csv(path.join(DATA_PATH, "test_data.csv"), index_col=0).to_numpy()
-    y_hat = sess.run([label_name], {input_name: X_test.astype(np.float64)})[0]
+
+    y_hat = sess.run([label_name], {input_name: X_test.astype(np.float64)})
+
+    print(len(y_hat), len(y_hat[0]))
+    y_hat = y_hat[0]
 
     y_test = (
         pd.read_csv(path.join(DATA_PATH, "test_target.csv"), index_col=0)
@@ -30,7 +37,6 @@ def main():
         .reshape(-1)
     )
 
-    # y_hat = loaded_model.predict(X_test)
     pd.DataFrame(y_hat).to_csv(path.join(DATA_PATH, "prediction_target.csv"))
     print_metrics(y_hat, y_test)
 
