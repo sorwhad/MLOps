@@ -1,5 +1,8 @@
 # MLOps project
 
+
+## !!!Задание доделал до дедлайна, см предыдущие коммиты
+
 This is a simple MLOps project.
 
 The ML part itself is meant to be as simple as possible in order to concentrate more on the MLOps part.
@@ -131,3 +134,7 @@ dynamic_batching: { max_queue_delay_microseconds: 500 }
 
 
 Concurrency: 8, throughput: 13291.6 infer/sec, latency 600 usec
+
+При увеличении количества инстансов модели растет параллелизм, что ведет к улучшению общего показателя производительности. Однако, это требует больше вычислительных ресурсов.
+
+max_queue_delay_microseconds: Увеличение этого параметра может улучшить общую throughput, позволяет более долго задерживать запросы в очереди перед обработкой. Но слишком большая задержка может увеличить latency для каждого запроса.
