@@ -1,7 +1,7 @@
 # MLOps project
 
 
-## !!!Задание доделал до дедлайна, см предыдущие коммиты
+## !!!Задание доделал до дедлайна (позже форматировал ридмик чтобы лучше смотрелось), см предыдущие коммиты
 
 This is a simple MLOps project.
 
@@ -15,6 +15,7 @@ The ML part itself is meant to be as simple as possible in order to concentrate 
 ## MLOps part:
 
 #### Дерево
+```
 .
 ├── Dockerfile
 ├── README.md
@@ -47,15 +48,17 @@ The ML part itself is meant to be as simple as possible in order to concentrate 
 ├── poetry.lock
 ├── pyproject.toml
 └── setup.cfg
+```
 
 
-#### Скрипт для конвертации лежит в iris_classifiers/utils
+
+#### ! Скрипт для конвертации лежит в iris_classifiers/utils
 
 #### Система
 Ubuntu 22.04.3 LTS
 
 #### CPU info
-
+```
 Число ядер: 32
 
 Architecture:            x86_64
@@ -74,11 +77,14 @@ Vendor ID:               GenuineIntel
     Socket(s):           2
     Stepping:            6
     BogoMIPS:            4200.00
+```
 
+```
 $free
                total        used        free      shared  buff/cache   available
 Mem:       198056300     3555804    12905864      278060   181594632   192766052
 Swap:         114964         776      114188
+```
 
 -------
 
@@ -121,7 +127,7 @@ Concurrency: 8, throughput: 10913.2 infer/sec, latency 731 usec
 
 
 
-WINNER
+**WINNER**
 
 instance_group [
     {
@@ -133,8 +139,10 @@ instance_group [
 dynamic_batching: { max_queue_delay_microseconds: 500 }
 
 
-Concurrency: 8, throughput: 13291.6 infer/sec, latency 600 usec
+**Concurrency: 8, throughput: 13291.6 infer/sec, latency 600 usec**
+
+**Пояснение**:
 
 При увеличении количества инстансов модели растет параллелизм, что ведет к улучшению общего показателя производительности. Однако, это требует больше вычислительных ресурсов.
 
-max_queue_delay_microseconds: Увеличение этого параметра может улучшить общую throughput, позволяет более долго задерживать запросы в очереди перед обработкой. Но слишком большая задержка может увеличить latency для каждого запроса.
+max_queue_delay_microseconds: Увеличение этого параметра может улучшить общую throughput, позволяет более долго задерживать запросы в очереди перед обработкой. Но слишком большая задержка может увеличить latency для каждого запроса
