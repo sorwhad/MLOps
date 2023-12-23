@@ -8,7 +8,8 @@ def save_to_onnx(model, types_like, model_path, model_name):
         makedirs(model_path)
 
     onx = to_onnx(model, types_like)
-    # print(onx.ListFields())
+    onx.ir_version = 8
+
     with open(path.join(model_path, model_name), "wb") as f:
         f.write(onx.SerializeToString())
 
