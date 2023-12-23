@@ -8,5 +8,5 @@ def save_to_onnx(model, types_like, model_path, model_name):
         makedirs(model_path)
 
     onx = to_onnx(model, types_like)
-    with open(path.join(model_path, f"{model_name}.onnx"), "wb") as f:
+    with open(path.join(model_path, model_name), "wb") as f:
         f.write(onx.SerializeToString())
