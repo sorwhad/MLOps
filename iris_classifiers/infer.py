@@ -3,7 +3,8 @@ from os import path
 import numpy as np
 import onnxruntime as rt
 import pandas as pd
-from sklearn.metrics import accuracy_score
+
+from iris_classifiers.utils import accuracy
 
 DATA_PATH = "../data"
 MODEL_PATH = "../model_repository/sklearn-onnx/1"
@@ -11,7 +12,7 @@ REPO_PATH = "../"
 
 
 def print_metrics(y_hat, y_test):
-    print("ACCURACY:", accuracy_score(y_hat, y_test))
+    print("ACCURACY:", accuracy(y_hat, y_test))
 
 
 def main():
@@ -23,10 +24,7 @@ def main():
 
     X_test = pd.read_csv(path.join(DATA_PATH, "test_data.csv"), index_col=0).to_numpy()
 
-    y_hat = sess.run([label_name], {input_name: X_test.astype(np.float64)})
-
-    # print(len(y_hat), len(y_hat[0]))
-    y_hat = y_hat[0]
+    y_hat = sess.run([label_name], {input_name: X_test.astype(np.float64)})[0]
 
     y_test = (
         pd.read_csv(path.join(DATA_PATH, "test_target.csv"), index_col=0)

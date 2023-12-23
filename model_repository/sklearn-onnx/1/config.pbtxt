@@ -1,13 +1,13 @@
 name: "sklearn-onnx"
 platform: "onnxruntime_onnx"
-max_batch_size: 0
+max_batch_size: 8
 
 
 input [
     {
         name: "X"
         data_type: TYPE_FP64
-        dims: [ -1, 4 ]
+        dims: [ 4 ]
     }
 ]
 
@@ -15,15 +15,15 @@ output [
     {
         name: "label"
         data_type: TYPE_INT64
-        dims: [ -1 ]
+        dims: [ ]
     }
 ]
 
 instance_group [
     {
-        count: 2
+        count: 6
         kind: KIND_CPU
     }
 ]
 
-dynamic_batching: { }
+dynamic_batching: { max_queue_delay_microseconds: 500 }

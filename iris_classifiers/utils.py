@@ -1,6 +1,7 @@
 from os import makedirs, path, system
 
 from skl2onnx import to_onnx
+from sklearn.metrics import accuracy_score
 
 
 def save_to_onnx(model, types_like, model_path, model_name):
@@ -20,3 +21,7 @@ def add_dvc(model_path, model_name):
     system(f"git add {path.join(model_path, model_name + '.dvc')}")
     system(f"git add {path.join(model_path, '.gitignore')}")
     print("Done!")
+
+
+def accuracy(y_hat, y_test):
+    return accuracy_score(y_hat, y_test)
